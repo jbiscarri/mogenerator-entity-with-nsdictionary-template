@@ -16,6 +16,13 @@ If the property is a *relationship* (and you want to be added as relationship in
 
 And that's it!
 
+**Example of generation script**
+
+```sh
+#!/bin/bash
+mogenerator --template-var arc=true -m CoreData/MyModel.xcdatamodeld/MyModel.xcdatamodel -M CoreData/Machine/ -H CoreData/Human/ --template-path coredata_templates_folder
+```
+
 ### Version
 1
 
