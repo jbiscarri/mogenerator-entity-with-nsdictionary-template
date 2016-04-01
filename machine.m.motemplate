@@ -15,7 +15,13 @@
 
 + (instancetype)insertWithDictionary:(NSDictionary *)dictionary context:(NSManagedObjectContext*)moc_ {
    _<$managedObjectClassName$> *object = [self insertInManagedObjectContext:moc_];
+    [self updateObject:object 
+        withdictionary:(NSDictionary *)dictionary 
+               context:(NSManagedObjectContext*)moc_];
+    return object;
+}
 
++ (instancetype)updateObject:(_<$managedObjectClassName$>*)object withdictionary:(NSDictionary *)dictionary context:(NSManagedObjectContext*)moc_ {
     for (NSPropertyDescription *property in object.entity) {
         NSString *jsonKey = property.userInfo[@"jsonKey"];
         if (jsonKey != nil) {
