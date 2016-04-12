@@ -3,13 +3,13 @@
 
 This template allows to create entities filled with an NSDictionary (perfect for JSON mapping to Core Data) using:
 ```sh
-+ (instancetype)insertWithDictionary:context:
++ insertWithDictionary:context:
 ```
 
 or update an object with:
 
 ```sh
-+ (instancetype)updateObject:withdictionary:context:
++ updateObject:withdictionary:context:
 ```
 
 How to Use:
