@@ -6,6 +6,12 @@ This template allows to create entities filled with an NSDictionary (perfect for
 + (instancetype)insertWithDictionary:context:
 ```
 
+or update an object with:
+
+```sh
++ (instancetype)updateObject:withdictionary:context:
+```
+
 How to Use:
 Add for every property in our xcdatamodel that We want to be mapped you have to add a new row in its User Info dictionary (in Data Model Inspector).
 
