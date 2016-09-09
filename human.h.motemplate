@@ -2,4 +2,7 @@
 
 @interface <$managedObjectClassName$> : _<$managedObjectClassName$> {}
 // Custom logic goes here.
+
++ (instancetype)insertObject:(NSDictionary *)dictionary inContext:(NSManagedObjectContext*)moc_;
+
 @end

@@ -51,6 +51,42 @@
     return object;
 }
 
+//Auxiliar methods
++ (BOOL)insertAll:(NSArray *)objects context:(NSManagedObjectContext*)moc_  {
+    [self deleteAllEntitiesInContext:moc_];
+    BOOL correct = YES;
+    for (NSDictionary *object in objects) {
+    	id obj = [self insertWithDictionary:object context:moc_];
+        if (obj == nil)
+            correct = NO;
+    }
+    [CoreDataHelper saveContext];
+    return correct;
+}
+
++ (NSArray *)getAll:(NSArray *)sortDescriptors context:(NSManagedObjectContext*)moc_  {
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+    req.sortDescriptors = sortDescriptors;
+    NSError *err;
+    NSArray *objects = [moc_ executeFetchRequest:req error:&err];
+    return objects;
+}
+
++ (void)deleteAllEntitiesInContext:(NSManagedObjectContext*)moc_ {
+	 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:[self entityName] inManagedObjectContext:moc_];
+    [fetchRequest setEntity:entity];
+    if (entity){
+        NSError *error;
+        NSArray *items = [moc_ executeFetchRequest:fetchRequest error:&error];
+        
+        for (NSManagedObject *managedObject in items)
+            [moc_ deleteObject:managedObject];
+
+    }
+}
+
+
 + (NSString*)entityName {
 	return @"<$name$>";
 }

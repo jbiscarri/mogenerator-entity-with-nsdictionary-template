@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (instancetype)insertWithDictionary:(NSDictionary *)dictionary context:(NSManagedObjectContext*)moc_;
 + (instancetype)updateObject:(_<$managedObjectClassName$>*)object withdictionary:(NSDictionary *)dictionary context:(NSManagedObjectContext*)moc_;
++ (BOOL)insertAll:(NSArray *)objects context:(NSManagedObjectContext*)moc_;
++ (NSArray *)getAll:(NSArray *)sortDescriptors context:(NSManagedObjectContext*)moc_;
++ (void)deleteAllEntitiesInContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 

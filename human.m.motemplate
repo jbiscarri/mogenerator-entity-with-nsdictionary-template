@@ -2,14 +2,17 @@
 
 
 @interface <$managedObjectClassName$> ()
-
 // Private interface goes here.
-
 @end
 
 
 @implementation <$managedObjectClassName$>
 
-// Custom logic goes here.
++ (instancetype)insertObject:(NSDictionary *)dictionary {
+    <$managedObjectClassName$> *object = [self insertWithDictionary:dictionary context:[CoreDataHelper managedObjectContext]];
+    //Add other fields that cannot be parsed automalically
+
+    return object;
+}
 
 @end

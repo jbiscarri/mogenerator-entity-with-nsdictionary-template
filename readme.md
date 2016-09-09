@@ -12,6 +12,14 @@ or update an object with:
 + updateObject:withdictionary:context:
 ```
 
+Every entity has methods to add from an NSArray of NSDictionaries and list all entities using sort descriptors array
+
+```sh
++ (BOOL)insertAll:(NSArray *)objects;
++ (NSArray *)getAll:(NSArray *)sortDescriptors;
++ (void)deleteAllEntitiesInContext:(NSManagedObjectContext*)moc_;
+```
+
 How to Use:
 Add for every property in our xcdatamodel that We want to be mapped you have to add a new row in its User Info dictionary (in Data Model Inspector).
 
