@@ -32,18 +32,24 @@
 	        } else if ([property isKindOfClass:[NSRelationshipDescription class]]) {
 	            NSRelationshipDescription *relationshipDescription = (NSRelationshipDescription*)property;
 	            if (relationshipDescription.toMany) {
-	                NSArray *relationshipJsonObjectsArray = (NSArray *)[dictionary objectForKey:jsonKey];
-	                for (NSDictionary *relationshipObjectDict in relationshipJsonObjectsArray) {
-	                    NSMutableSet *propertySet = [object mutableSetValueForKey:property.name];
-	 					Class class = NSClassFromString(relationshipDescription.destinationEntity.name);
-	                    id relationShipEntity = [class insertWithDictionary:relationshipObjectDict context:moc_];
-	                    [propertySet addObject:relationShipEntity];
-	                }
+	             	id relationshipJsonObjectTests = [dictionary objectForKey:jsonKey];
+                    if ([relationshipJsonObjectTests isKindOfClass:[NSArray class]]) {
+                        NSArray *relationshipJsonObjectsArray = (NSArray *)relationshipJsonObjectTests;
+		                for (NSDictionary *relationshipObjectDict in relationshipJsonObjectsArray) {
+		                    NSMutableSet *propertySet = [object mutableSetValueForKey:property.name];
+		 					Class class = NSClassFromString(relationshipDescription.destinationEntity.name);
+		                    id relationShipEntity = [class insertWithDictionary:relationshipObjectDict context:moc_];
+		                    [propertySet addObject:relationShipEntity];
+		                }
+		            }
 	            } else {
-					NSDictionary *relationshipJsonObject = (NSDictionary *)[dictionary objectForKey:jsonKey];
-	 				Class class = NSClassFromString(relationshipDescription.destinationEntity.name);
-	                id relationShipEntity = [class insertWithDictionary:relationshipJsonObject context:moc_];
-	                [object setValue:relationShipEntity forKey:property.name];
+ 					id relationshipJsonObjectTests = [dictionary objectForKey:jsonKey];
+                    if ([relationshipJsonObjectTests isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *relationshipJsonObject = (NSDictionary *)relationshipJsonObjectTests;
+		 				Class class = NSClassFromString(relationshipDescription.destinationEntity.name);
+		                id relationShipEntity = [class insertWithDictionary:relationshipJsonObject context:moc_];
+		                [object setValue:relationShipEntity forKey:property.name];
+		            }
 	            }
 	        }
         }
